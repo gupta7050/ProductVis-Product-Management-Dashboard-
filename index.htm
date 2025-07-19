@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProductVis</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js core -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Chart.js Data Labels plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+  <!-- jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- jsPDF AutoTable for tables in PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Inventra</h2>
+    <ul>
+      <li onclick="showSection('dashboard')">Dashboard</li>
+      <li onclick="showSection('stock')">Stock</li>
+      <li onclick="showSection('ordered')">Ordered</li>
+      <li onclick="showSection('sold')">Sold</li>
+      <li onclick="showSection('haveToOrder')">Have To Order</li>
+      <li onclick="downloadPDF()">Download PDF</li>
+      <li onclick="downloadExcel()">Download Excel</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div id="dashboard" class="section">
+      <p class="site-description">
+        This dashboard helps you manage stock, orders, sales, and pending products with charts and reports.
+      </p>
+      <h1>Dashboard</h1>
+      <div class="chart-container">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Stock -->
+    <div id="stock" class="section" style="display:none">
+      <h1>Stock</h1>
+      <form data-category="stock" class="productForm">
+        <input type="text" placeholder="Product Name" required />
+        <input type="number" placeholder="Quantity" required />
+        <button type="submit">Add Product</button>
+      </form>
+      <table>
+        <thead>
+          <tr><th>Product</th><th>Quantity</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="stockTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Ordered -->
+    <div id="ordered" class="section" style="display:none">
+      <h1>Ordered</h1>
+      <form data-category="ordered" class="productForm">
+        <input type="text" placeholder="Product Name" required />
+        <input type="number" placeholder="Quantity" required />
+        <button type="submit">Add Product</button>
+      </form>
+      <table>
+        <thead>
+          <tr><th>Product</th><th>Quantity</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="orderedTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Sold -->
+    <div id="sold" class="section" style="display:none">
+      <h1>Sold</h1>
+      <form data-category="sold" class="productForm">
+        <input type="text" placeholder="Product Name" required />
+        <input type="number" placeholder="Quantity" required />
+        <button type="submit">Add Product</button>
+      </form>
+      <table>
+        <thead>
+          <tr><th>Product</th><th>Quantity</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="soldTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Have To Order -->
+    <div id="haveToOrder" class="section" style="display:none">
+      <h1>Have To Order</h1>
+      <form data-category="haveToOrder" class="productForm">
+        <input type="text" placeholder="Product Name" required />
+        <input type="number" placeholder="Quantity" required />
+        <button type="submit">Add Product</button>
+      </form>
+      <table>
+        <thead>
+          <tr><th>Product</th><th>Quantity</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="haveToOrderTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Your custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
